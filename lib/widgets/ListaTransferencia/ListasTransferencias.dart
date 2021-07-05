@@ -4,9 +4,13 @@ import 'package:projeto1/model/Transferencia.dart';
 import 'package:projeto1/widgets/FormularioTransferencia/FormularioTransferencia.dart';
 import 'package:projeto1/widgets/ItemTransferencia/ItemTransferencia.dart';
 
-class ListasTransferencias extends StatelessWidget {
+class ListasTransferencias extends StatefulWidget {
   List<Transferencia?> _transferencias = [];
+  @override
+  ListasTransferencias_State createState() => ListasTransferencias_State();
+}
 
+class ListasTransferencias_State extends State<ListasTransferencias> {
   _mudarPagina(context) {
     Future<Transferencia?> future = Navigator.push(context,
         MaterialPageRoute(builder: (context) => FormularioTransferencia()));
@@ -14,21 +18,24 @@ class ListasTransferencias extends StatelessWidget {
     future.then((value) => {
           debugPrint("Chegou no then do FUTURE"),
           debugPrint("$value"),
-          if (value != null) {_transferencias.add(value)}
+          if (value != null)
+            {
+              setState(() => widget._transferencias.add(value)),
+              print('AQUI $widget._transferencias')
+            }
         });
   }
 
   @override
   Widget build(BuildContext context) {
-    _transferencias.add(Transferencia(300, 200));
     return Scaffold(
       appBar: AppBar(
         title: Text('Transferencias'),
       ),
       body: ListView.builder(
-        itemCount: _transferencias.length,
+        itemCount: widget._transferencias.length,
         itemBuilder: (context, indice) {
-          Transferencia _transferencia = _transferencias[indice]!;
+          Transferencia _transferencia = widget._transferencias[indice]!;
           return ItemTransferencia(_transferencia);
         },
       ),
