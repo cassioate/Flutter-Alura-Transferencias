@@ -7,10 +7,10 @@ import 'package:projeto1/widgets/ItemTransferencia/ItemTransferencia.dart';
 class ListasTransferencias extends StatefulWidget {
   List<Transferencia?> _transferencias = [];
   @override
-  ListasTransferencias_State createState() => ListasTransferencias_State();
+  ListasTransferenciasState createState() => ListasTransferenciasState();
 }
 
-class ListasTransferencias_State extends State<ListasTransferencias> {
+class ListasTransferenciasState extends State<ListasTransferencias> {
   _mudarPagina(context) {
     Future<Transferencia?> future = Navigator.push(context,
         MaterialPageRoute(builder: (context) => FormularioTransferencia()));
