@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:projeto1/model/Transferencia.dart';
 
 class FormularioTransferencia extends StatelessWidget {
-  void onPressed() {
-    print('teste');
-  }
+  final TextEditingController _controladorCampoNumeroConta =
+      TextEditingController();
+  final TextEditingController _controladorCampoValor = TextEditingController();
 
-  var child;
+  int? _numeroConta = 0;
+  double? _valor = 0;
+
+  void onPressed() {
+    _numeroConta = int.tryParse(_controladorCampoNumeroConta.text);
+    _valor = double.tryParse(_controladorCampoValor.text);
+    if (_numeroConta != null && _valor != null) {
+      Transferencia _transferenciaCriada =
+          Transferencia(_valor!, _numeroConta!);
+      print(_transferenciaCriada);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +30,7 @@ class FormularioTransferencia extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: TextField(
+              controller: _controladorCampoNumeroConta,
               style: TextStyle(
                 fontSize: 24.0,
               ),
@@ -31,6 +44,7 @@ class FormularioTransferencia extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: TextField(
+              controller: _controladorCampoValor,
               style: TextStyle(
                 fontSize: 24.0,
               ),
@@ -42,10 +56,12 @@ class FormularioTransferencia extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          ElevatedButton(onPressed: onPressed, child: Text('Confirmar'))
+          ElevatedButton(
+            onPressed: onPressed,
+            child: Text('Confirmar'),
+          )
         ],
       ),
     );
-    ;
   }
 }
