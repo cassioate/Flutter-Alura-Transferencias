@@ -5,7 +5,7 @@ import 'package:projeto1/widgets/FormularioTransferencia/FormularioTransferencia
 import 'package:projeto1/widgets/ItemTransferencia/ItemTransferencia.dart';
 
 class ListasTransferencias extends StatefulWidget {
-  List<Transferencia?> _transferencias = [];
+  final List<Transferencia?> _transferencias = [];
   @override
   ListasTransferenciasState createState() => ListasTransferenciasState();
 }
